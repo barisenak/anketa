@@ -1,40 +1,60 @@
-let surname = prompt ("Введите вашу фамилию");
-let name = prompt ("Введите ваше имя");
-let patronymic = prompt ("Введите ваше отчество");
-let age = Number(prompt ("Укажите ваш возраст (полных лет)"));
-let isMan = confirm ("Вы мужчина?");
+function getAnketa() {
+  let anketa = true;
+  const surname = prompt("Введите вашу фамилию");
 
-if (isMan) {
+  if (!surname) {
+    alert("Строка пуста");
+    return getAnketa()
+  };
+
+  const name = prompt("Введите ваше имя");
+
+  if (!name) {
+    alert("Строка пуста");
+  return getAnketa()
+  };
+
+  const patronymic = prompt("Введите ваше отчество");
+
+  if (!patronymic) {
+    alert("Строка пуста");
+  return getAnketa()
+  };
+
+  const age = Number(prompt("Укажите ваш возраст (полных лет)"));
+
+  if (!age) {
+    alert("Строка пуста или вы ввели не числовое значение");
+  return getAnketa()
+  };
+
+  const isMan = confirm("Вы мужчина?");
+  const ageInDays = age * 365;
+  const ageAfter5years = age + 5;
+  let sex = null;
+  let pension = null;
+
+  if (isMan) {
     sex = "мужчина";
-} else {
+  } else {
     sex = "женщина";
-};
+  };
+  
+  if ((isMan && age >= 62) || (!isMan && age >= 57)) {
+    pension = "на пенсии";
+  } else {
+    pension = "не на пенсии";
+  };
+  
+  if (anketa) {
 
-let ageInDays = age * 365;
+  } alert(`
+  Ваше ФИО ${surname} ${name} ${patronymic}, 
+  Ваш возраст ${age} лет, 
+  Ваш возраст в днях ${ageInDays} дней, 
+  Через 5 лет вам будет ${ageAfter5years} лет, 
+  Вы ${sex}, 
+  Вы ${pension}`);
+}
 
-let ageAfter5years = age + 5;
-
-if ((isMan === true && age >= 62) || (isMan === !true && age >= 57)) {
-    pension = "на пенсии"}
-else {
-    pension = "не на пенсии"
-};
-
-//  && age === Number не работает, не смогла понять, почему
-
-if (surname != "" && name != "" && patronymic != "" && age !="" ){
-    alert (`
-    Ваше ФИО ${surname} ${name} ${patronymic}, 
-    Ваш возраст ${age} лет, 
-    Ваш возраст в днях ${ageInDays} дней, 
-    Через 5 лет вам будет ${ageAfter5years} лет, 
-    Вы ${sex}, 
-    Вы ${pension}`);
-} else {    
-    confirm ("Перезагрузите страницу и заполните верно все поля")
-};
-
-    
-
-
-
+getAnketa()
