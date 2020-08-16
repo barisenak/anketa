@@ -1,5 +1,4 @@
 function getAnketa() {
-  let anketa = true;
   const surname = prompt("Введите вашу фамилию");
 
   if (!surname) {
@@ -17,42 +16,33 @@ function getAnketa() {
   const patronymic = prompt("Введите ваше отчество");
 
   if (!patronymic) {
-    alert("Строка пуста");
+    alert("Строка пуста, начни заново!");
   return getAnketa()
   };
 
   const age = Number(prompt("Укажите ваш возраст (полных лет)"));
 
   if (!age) {
-    alert("Строка пуста или вы ввели не числовое значение");
+    alert("Строка пуста или вы ввели не числовое значение, начни заново!");
   return getAnketa()
   };
 
   const isMan = confirm("Вы мужчина?");
-  const ageInDays = age * 365;
-  const ageAfter5years = age + 5;
-  let sex = null;
   let pension = null;
 
-  if (isMan) {
-    sex = "мужчина";
-  } else {
-    sex = "женщина";
-  };
+  let sex = isMan ? "мужчина" : "женщина";
   
   if ((isMan && age >= 62) || (!isMan && age >= 57)) {
     pension = "на пенсии";
   } else {
     pension = "не на пенсии";
   };
-  
-  if (anketa) {
 
-  } alert(`
+  alert(`
   Ваше ФИО ${surname} ${name} ${patronymic}, 
   Ваш возраст ${age} лет, 
-  Ваш возраст в днях ${ageInDays} дней, 
-  Через 5 лет вам будет ${ageAfter5years} лет, 
+  Ваш возраст в днях ${age*365} дней, 
+  Через 5 лет вам будет ${age+5} лет, 
   Вы ${sex}, 
   Вы ${pension}`);
 }
