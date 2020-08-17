@@ -3,7 +3,7 @@ function getAnketa() {
 
   if (!surname) {
     alert("Строка пуста");
-    return getAnketa()
+    return getAnketa();
   };
 
   const name = prompt("Введите ваше имя");
