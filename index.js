@@ -1,40 +1,50 @@
-let surname = prompt ("Введите вашу фамилию");
-let name = prompt ("Введите ваше имя");
-let patronymic = prompt ("Введите ваше отчество");
-let age = Number(prompt ("Укажите ваш возраст (полных лет)"));
-let isMan = confirm ("Вы мужчина?");
+function getAnketa() {
+  const surname = prompt("Введите вашу фамилию");
 
-if (isMan) {
-    sex = "мужчина";
-} else {
-    sex = "женщина";
-};
+  if (!surname) {
+    alert("Строка пуста");
+    return getAnketa();
+  };
 
-let ageInDays = age * 365;
+  const name = prompt("Введите ваше имя");
 
-let ageAfter5years = age + 5;
+  if (!name) {
+    alert("Строка пуста");
+  return getAnketa()
+  };
 
-if ((isMan === true && age >= 62) || (isMan === !true && age >= 57)) {
-    pension = "на пенсии"}
-else {
-    pension = "не на пенсии"
-};
+  const patronymic = prompt("Введите ваше отчество");
 
-//  && age === Number не работает, не смогла понять, почему
+  if (!patronymic) {
+    alert("Строка пуста, начни заново!");
+  return getAnketa()
+  };
 
-if (surname != "" && name != "" && patronymic != "" && age !="" ){
-    alert (`
-    Ваше ФИО ${surname} ${name} ${patronymic}, 
-    Ваш возраст ${age} лет, 
-    Ваш возраст в днях ${ageInDays} дней, 
-    Через 5 лет вам будет ${ageAfter5years} лет, 
-    Вы ${sex}, 
-    Вы ${pension}`);
-} else {    
-    confirm ("Перезагрузите страницу и заполните верно все поля")
-};
+  const age = Number(prompt("Укажите ваш возраст (полных лет)"));
 
-    
+  if (!age) {
+    alert("Строка пуста или вы ввели не числовое значение, начни заново!");
+  return getAnketa()
+  };
 
+  const isMan = confirm("Вы мужчина?");
+  let pension = null;
 
+  let sex = isMan ? "мужчина" : "женщина";
+  
+  if ((isMan && age >= 62) || (!isMan && age >= 57)) {
+    pension = "на пенсии";
+  } else {
+    pension = "не на пенсии";
+  };
 
+  alert(`
+  Ваше ФИО ${surname} ${name} ${patronymic}, 
+  Ваш возраст ${age} лет, 
+  Ваш возраст в днях ${age*365} дней, 
+  Через 5 лет вам будет ${age+5} лет, 
+  Вы ${sex}, 
+  Вы ${pension}`);
+}
+
+getAnketa()
